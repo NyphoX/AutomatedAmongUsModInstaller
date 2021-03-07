@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AmongUs_ModInstaller.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IsGamePathSet" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IsCPUArchitectureSet" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IsCPUArchitecture64Bit" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SteamRegistryPath32Bit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HKEY_LOCAL_MACHINE\SOFTWARE\Valve\Steam</Value>
+    </Setting>
+    <Setting Name="SteamRegistryPath64Bit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Valve\Steam</Value>
+    </Setting>
+    <Setting Name="SteamRegistryKeyName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">InstallPath</Value>
+    </Setting>
+    <Setting Name="AmongUsAppManifestSublocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">steamapps\appmanifest_945360.acf</Value>
+    </Setting>
+    <Setting Name="SteamLibraryFoldersFileSublocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">steamapps\libraryfolders.vdf</Value>
+    </Setting>
+    <Setting Name="GamePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="GameSublocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">steamapps\common\Among Us</Value>
+    </Setting>
+    <Setting Name="MOD_ExtraRoles_APIURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.github.com/repos/NotHunter101/ExtraRolesAmongUs/releases/latest</Value>
+    </Setting>
+    <Setting Name="MOD_ExtraRoles_FileList" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MOD_ExtraRoles_InstalledVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(none)</Value>
+    </Setting>
+    <Setting Name="MOD_ExtraRoles_Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ExtraRoles</Value>
+    </Setting>
+    <Setting Name="MOD_ExtraRoles_IsInstalled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MOD_ExtraRoles_FolderList" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
