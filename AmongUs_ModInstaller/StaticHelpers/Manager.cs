@@ -59,7 +59,7 @@ namespace AmongUs_ModInstaller
 
                 //Download JSON for release from GitHub first
                 string json = wc.DownloadString(modInfo.permanentAPIURL);
-                string zipDownloadURL = JObject.Parse(json)["assets"][0]["browser_download_url"].ToString();
+                string zipDownloadURL = JObject.Parse(json)["assets"][modInfo.assetId]["browser_download_url"].ToString();
 
                 //Now download zip that's specified for release to temporary file
                 wc.DownloadFile(zipDownloadURL, tempFile);
