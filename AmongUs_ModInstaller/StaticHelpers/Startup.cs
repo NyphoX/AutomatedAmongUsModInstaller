@@ -2,7 +2,10 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace AmongUs_ModInstaller
 {
@@ -116,6 +119,39 @@ namespace AmongUs_ModInstaller
             }
         }
 
+        private static void RemoveUnsupportedModsFromModList()
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            Version AAMIversion = new Version(FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion);
+
+            bool newerClientRequired = false;
+            List<ModInfo> modsToRemove = new List<ModInfo>();
+            foreach (ModInfo modInfo in modInfos)
+            {
+                Version modVersion = new Version(modInfo.AAMIversion);
+                if (AAMIversion.CompareTo(modVersion) < 0)
+                {
+                    newerClientRequired = true;
+                    modsToRemove.Add(modInfo);
+                }
+            }
+
+            foreach (ModInfo modInfo in modsToRemove)
+                modInfos.Remove(modInfo);
+
+            if (newerClientRequired)
+            {
+                if (MessageBox.Show("There are new mods, that can now be managed by AAMI.\n\n" +
+                    "In order for AAMI to manage these new mods for you, you must first update to the newest AAMI client.\n\n" + 
+                    "Do you want to go to the GitHub-release website now?", 
+                    "New AAMI client available", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    Process.Start("explorer.exe", "https://github.com/NyphoX/AutomatedAmongUsModInstaller/releases/latest");
+                    Environment.Exit(0);
+                }
+            }
+        }
+
         public static void LoadSettings()
         {
             GetOSArchitecture();
@@ -128,6 +164,7 @@ namespace AmongUs_ModInstaller
             LoadModInstallations();
 
             DownloadJSONModList();
+            RemoveUnsupportedModsFromModList();
         }
     }
 }
