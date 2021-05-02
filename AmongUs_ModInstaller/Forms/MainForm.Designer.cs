@@ -102,30 +102,30 @@ namespace AmongUs_ModInstaller
             // 
             // btnInstallMod
             // 
-            this.btnInstallMod.Location = new System.Drawing.Point(12, 437);
+            this.btnInstallMod.Location = new System.Drawing.Point(12, 80);
             this.btnInstallMod.Name = "btnInstallMod";
             this.btnInstallMod.Size = new System.Drawing.Size(256, 48);
-            this.btnInstallMod.TabIndex = 6;
+            this.btnInstallMod.TabIndex = 2;
             this.btnInstallMod.Text = "Install Mod";
             this.btnInstallMod.UseVisualStyleBackColor = true;
             this.btnInstallMod.Click += new System.EventHandler(this.btnInstallMod_Click);
             // 
             // btnUninstallMod
             // 
-            this.btnUninstallMod.Location = new System.Drawing.Point(299, 437);
+            this.btnUninstallMod.Location = new System.Drawing.Point(299, 80);
             this.btnUninstallMod.Name = "btnUninstallMod";
             this.btnUninstallMod.Size = new System.Drawing.Size(256, 48);
-            this.btnUninstallMod.TabIndex = 7;
+            this.btnUninstallMod.TabIndex = 3;
             this.btnUninstallMod.Text = "Uninstall Mod";
             this.btnUninstallMod.UseVisualStyleBackColor = true;
             this.btnUninstallMod.Click += new System.EventHandler(this.btnUninstallMod_Click);
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(299, 80);
+            this.btnPlay.Location = new System.Drawing.Point(299, 437);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(256, 48);
-            this.btnPlay.TabIndex = 3;
+            this.btnPlay.TabIndex = 7;
             this.btnPlay.Text = "Play Mod";
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
@@ -170,10 +170,10 @@ namespace AmongUs_ModInstaller
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 80);
+            this.button1.Location = new System.Drawing.Point(12, 437);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(256, 48);
-            this.button1.TabIndex = 2;
+            this.button1.TabIndex = 6;
             this.button1.Text = "Play Vanilla";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -203,7 +203,6 @@ namespace AmongUs_ModInstaller
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AAMI - Automated Among Us Mod Installer";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -40,8 +40,14 @@ namespace AmongUs_ModInstaller
                 listBoxAvailableMods.SelectedItem = listBoxAvailableMods.Items[0];
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        static extern bool HideCaret(IntPtr hWnd);
+
+        private void MainForm_Shown(object sender, EventArgs e)
         {
+            HideCaret(txtBoxGamePath.Handle);
+            HideCaret(txtBoxModPath.Handle);
+
             Startup.LoadSettings();
 
             settings = Startup.GetSettings();
@@ -53,15 +59,6 @@ namespace AmongUs_ModInstaller
 
             UpdateInstalledListBox();
             UpdateAvailableListBox();
-        }
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        static extern bool HideCaret(IntPtr hWnd);
-
-        private void MainForm_Shown(object sender, EventArgs e)
-        {
-            HideCaret(txtBoxGamePath.Handle);
-            HideCaret(txtBoxModPath.Handle);
         }
 
         private void btnInstallMod_Click(object sender, EventArgs e)
