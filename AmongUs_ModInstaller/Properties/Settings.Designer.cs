@@ -122,94 +122,121 @@ namespace AmongUs_ModInstaller.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string GamePath {
+        public string AmongUsGameFullPath {
             get {
-                return ((string)(this["GamePath"]));
+                return ((string)(this["AmongUsGameFullPath"]));
             }
             set {
-                this["GamePath"] = value;
+                this["AmongUsGameFullPath"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("steamapps\\common\\Among Us")]
-        public string GameSublocation {
+        [global::System.Configuration.DefaultSettingValueAttribute("steamapps\\common")]
+        public string SteamCommonFolderSubpath {
             get {
-                return ((string)(this["GameSublocation"]));
+                return ((string)(this["SteamCommonFolderSubpath"]));
             }
             set {
-                this["GameSublocation"] = value;
+                this["SteamCommonFolderSubpath"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://api.github.com/repos/NotHunter101/ExtraRolesAmongUs/releases/latest")]
-        public string MOD_ExtraRoles_APIURL {
+        [global::System.Configuration.DefaultSettingValueAttribute("Among Us")]
+        public string AmongUsGameFolderName {
             get {
-                return ((string)(this["MOD_ExtraRoles_APIURL"]));
+                return ((string)(this["AmongUsGameFolderName"]));
             }
             set {
-                this["MOD_ExtraRoles_APIURL"] = value;
+                this["AmongUsGameFolderName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection MOD_ExtraRoles_FileList {
+        [global::System.Configuration.DefaultSettingValueAttribute("Among Us.exe")]
+        public string AmongUsGameExeName {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["MOD_ExtraRoles_FileList"]));
+                return ((string)(this["AmongUsGameExeName"]));
             }
             set {
-                this["MOD_ExtraRoles_FileList"] = value;
+                this["AmongUsGameExeName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(none)")]
-        public string MOD_ExtraRoles_InstalledVersion {
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/NyphoX/AutomatedAmongUsModInstaller/master/publ" +
+            "ic/modlist.json")]
+        public string JSONModlistURL {
             get {
-                return ((string)(this["MOD_ExtraRoles_InstalledVersion"]));
+                return ((string)(this["JSONModlistURL"]));
             }
             set {
-                this["MOD_ExtraRoles_InstalledVersion"] = value;
+                this["JSONModlistURL"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ExtraRoles")]
-        public string MOD_ExtraRoles_Name {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string JSONModlist {
             get {
-                return ((string)(this["MOD_ExtraRoles_Name"]));
+                return ((string)(this["JSONModlist"]));
             }
             set {
-                this["MOD_ExtraRoles_Name"] = value;
+                this["JSONModlist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Among Us (Modded by AAMI)")]
+        public string AAMIModdingFolderName {
+            get {
+                return ((string)(this["AAMIModdingFolderName"]));
+            }
+            set {
+                this["AAMIModdingFolderName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AAMIModdingFullPath {
+            get {
+                return ((string)(this["AAMIModdingFullPath"]));
+            }
+            set {
+                this["AAMIModdingFullPath"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool MOD_ExtraRoles_IsInstalled {
+        public bool IsAAMIModdingFullPathSet {
             get {
-                return ((bool)(this["MOD_ExtraRoles_IsInstalled"]));
+                return ((bool)(this["IsAAMIModdingFullPathSet"]));
             }
             set {
-                this["MOD_ExtraRoles_IsInstalled"] = value;
+                this["IsAAMIModdingFullPathSet"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection MOD_ExtraRoles_FolderList {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ModInstallations {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["MOD_ExtraRoles_FolderList"]));
+                return ((string)(this["ModInstallations"]));
             }
             set {
-                this["MOD_ExtraRoles_FolderList"] = value;
+                this["ModInstallations"] = value;
             }
         }
     }
