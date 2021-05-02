@@ -17,8 +17,9 @@
     <RepositoryUrl></RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
