@@ -1,5 +1,5 @@
 [
-{"name":"Sheriff Mod","version":"latest","permanentAPIURL":"https://api.github.com/repos/Woodi-dev/Among-Us-Sheriff-Mod/releases/latest","assetId":0},
-{"name":"The Other Roles","version":"latest","permanentAPIURL":"https://api.github.com/repos/Eisbison/TheOtherRoles/releases/latest","assetId":0},
-{"name":"Town Of Impostors","version":"latest","permanentAPIURL":"https://api.github.com/repos/AJMix/TownOfImpostors/releases/latest","assetId":2}
+{"name":"Sheriff Mod","version":"latest","permanentAPIURL":"https://api.github.com/repos/Woodi-dev/Among-Us-Sheriff-Mod/releases/latest","assetId":0,"AAMIversion":"2.0.0"},
+{"name":"The Other Roles","version":"latest","permanentAPIURL":"https://api.github.com/repos/Eisbison/TheOtherRoles/releases/latest","assetId":0,"AAMIversion":"2.0.0"},
+{"name":"Town Of Impostors","version":"latest","permanentAPIURL":"https://api.github.com/repos/AJMix/TownOfImpostors/releases/latest","assetId":2,"AAMIversion":"2.0.0"}
 ]

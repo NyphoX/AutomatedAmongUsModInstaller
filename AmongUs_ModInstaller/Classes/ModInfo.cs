@@ -8,6 +8,7 @@ namespace AmongUs_ModInstaller
         public string version;
         public string permanentAPIURL;
         public int assetId;
+        public string AAMIversion;
         public override string ToString()
         {
             return string.Format("{0} (Version: {1})", name, version);
