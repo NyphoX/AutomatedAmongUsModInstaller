@@ -2,7 +2,7 @@
 
 ![AAMI Icon](https://raw.githubusercontent.com/NyphoX/AutomatedAmongUsModInstaller/master/AmongUs_ModInstaller/aami.ico)
 
-AAMI is a standalone tool that is designed to simplify the modding process of the Steam version of the game Among Us.
+AAMI is a standalone tool that is designed to simplify the process of modding Among Us. It is intended to be used with the Steam version of the game.
 
 The goal is to stop players from having to perform  the same tedious copy-paste tasks, whenever a new version of their favorite mod is released or Among Us itself is updated. Simply select the desired mod from a list, mod your game with a single click, and start playing. Switch between different mod versions or even completely different mods in an instant. Or just start a quick round of vanilla Among Us while still keeping your mods installed. And if something is outdated, just remove it with a single click.
 
