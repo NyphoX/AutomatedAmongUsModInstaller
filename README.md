@@ -37,9 +37,10 @@ If the mod is on GitHub, create a new [issue](https://github.com/NyphoX/Automate
 A picture says more than a thousand words. So here are two short videos demonstrating AAMI instead.
 
 ### QuickStart any installed mod
+
 [![AAMI - QuickStart Video](https://img.youtube.com/vi/Xo0ewyi5y-s/0.jpg)](https://www.youtube.com/watch?v=Xo0ewyi5y-s)
 
-### Install, play and uninstall mod
+### How to install, play and uninstall mod
 [![AAMI - HowTo Video](https://img.youtube.com/vi/nAKN5leL8Ks/0.jpg)](https://www.youtube.com/watch?v=nAKN5leL8Ks)
 
 ## Windows protected your PC / Microsoft Defender SmartScreen
@@ -48,5 +49,5 @@ Windows may tell you _during the first start_ of AAMI, that it is unrecognized a
 
 If in doubt, check the files yourself or refer to the VirusTotal.com scans provided for every release.
 
-![1](https://user-images.githubusercontent.com/17164873/116812589-be652d80-ab4f-11eb-8ad6-afb2ad1e9576.jpg) ![2](https://user-images.githubusercontent.com/17164873/116812590-befdc400-ab4f-11eb-83ff-ce9fd8cb9e57.jpg)
+![Microsoft Defender SmartScreen Window](https://user-images.githubusercontent.com/17164873/116812589-be652d80-ab4f-11eb-8ad6-afb2ad1e9576.jpg) ![Microsoft Defender SmartScreen Window showing more information](https://user-images.githubusercontent.com/17164873/116812590-befdc400-ab4f-11eb-83ff-ce9fd8cb9e57.jpg)
 
