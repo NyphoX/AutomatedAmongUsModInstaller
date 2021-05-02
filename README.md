@@ -15,7 +15,7 @@ __Before__ using AAMI, make sure your Steam installation of Among Us is "clean".
  1. Open Steam and click on Library > Right-Click on Among Us > Manage > Browse Local Files. Keep this window open.
  2. Again, click on Library > Right-Click on Among Us > Manage > Uninstall. Confirm the uninstall prompt and wait until it is finished.
  3. In the explorer window from step 1., check if there are any leftover files. Delete everything that is in this folder.
- 4. Open Steam and install Among Us as usual. You can now use AAMI and it will never mess up your Among Us folder again.
+ 4. Open Steam and install Among Us as usual. You can now use AAMI and you will never have to mess with your Among Us folder again.
 
 ## Where to get it?
 
