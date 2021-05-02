@@ -18,4 +18,5 @@ If the mod is on GitHub, create a new [issue](https://github.com/NyphoX/Automate
 
 A picture says more than a thousand words. So here's a video instead.
 
-_TODO_
+https://user-images.githubusercontent.com/17164873/116798676-6946fe80-aaf2-11eb-9426-dc8d5d525db3.mp4
+
