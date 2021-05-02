@@ -41,3 +41,12 @@ A picture says more than a thousand words. So here are two short video instead.
 
 ### Install, play and uninstall mod
 [![AAMI - HowTo Video](https://img.youtube.com/vi/nAKN5leL8Ks/0.jpg)](https://www.youtube.com/watch?v=nAKN5leL8Ks)
+
+## Windows protected your PC / Microsoft Defender SmartScreen
+
+Windows may tell you _during the first start_ of AAMI, that it is unrecognized app/from an unknown publisher. This may happen when you are using a new release. You can continue by clicking on "More Info" and then "Run anyway" in this case, as shown below.
+
+If in doubt, check the files yourself or refer to the VirusTotal.com scans provided for every release.
+
+![1](https://user-images.githubusercontent.com/17164873/116812589-be652d80-ab4f-11eb-8ad6-afb2ad1e9576.jpg) ![2](https://user-images.githubusercontent.com/17164873/116812590-befdc400-ab4f-11eb-83ff-ce9fd8cb9e57.jpg)
+
