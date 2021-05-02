@@ -9,6 +9,14 @@ The goal is to stop players from having to perform  the same tedious copy-paste 
 
 AAMI is currently only developed for Windows.
 
+## IMPORTANT
+
+__Before__ using AAMI, make sure your Steam installation of Among Us is "clean". This means that there is no mod installed and only the base Among Us game files are present. If you are unsure if this is the case, do a clean reinstall of Among Us following these steps:
+ 1. Open Steam and click on Library > Right-Click on Among Us > Manage > Browse Local Files. Keep this window open.
+ 2. Again, click on Library > Right-Click on Among Us > Manage > Uninstall. Confirm the uninstall prompt and wait until it is finished.
+ 3. In the explorer window from step 1., check if there are any leftover files. Delete everything that is in this folder.
+ 4. Open Steam and install Among Us as usual. You can now use AAMI and it will never mess up your Among Us folder again.
+
 ## Where to get it?
 
 Download the latest release here: https://github.com/NyphoX/AutomatedAmongUsModInstaller/releases/latest
