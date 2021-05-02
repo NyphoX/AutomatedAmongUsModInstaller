@@ -13,6 +13,13 @@ AAMI is currently only developed for Windows.
 
 Download the latest release here: https://github.com/NyphoX/AutomatedAmongUsModInstaller/releases/latest
 
+## Supported Mods
+
+AAMI currently supports the following mods (more to come):
+- [Sherrif Mod](https://github.com/Woodi-dev/Among-Us-Sheriff-Mod)
+- [The Other Roles](https://github.com/Eisbison/TheOtherRoles)
+- [Town of Impostors](https://github.com/AJMix/TownOfImpostors)
+
 ## Why is mod "XYZ" not available?
 
 If the mod is on GitHub, create a new [issue](https://github.com/NyphoX/AutomatedAmongUsModInstaller/issues) and link to the missing mod. If the mod just has to be extracted into the Among Us game folder, it can be added with an one-liner. If not, AAMI might need to be changed to support a wider variety of mods. If you know how to, you may also just create a pull request that I will merge afterwards.
