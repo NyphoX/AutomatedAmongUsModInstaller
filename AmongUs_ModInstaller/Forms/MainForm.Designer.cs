@@ -43,7 +43,7 @@ namespace AmongUs_ModInstaller
             this.btnOpenModPath = new System.Windows.Forms.Button();
             this.txtBoxModPath = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPlayVanilla = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -168,22 +168,22 @@ namespace AmongUs_ModInstaller
             this.label4.TabIndex = 104;
             this.label4.Text = "Mod Path:";
             // 
-            // button1
+            // btnPlayVanilla
             // 
-            this.button1.Location = new System.Drawing.Point(12, 437);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(256, 48);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Play Vanilla";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPlayVanilla.Location = new System.Drawing.Point(12, 437);
+            this.btnPlayVanilla.Name = "btnPlayVanilla";
+            this.btnPlayVanilla.Size = new System.Drawing.Size(256, 48);
+            this.btnPlayVanilla.TabIndex = 6;
+            this.btnPlayVanilla.Text = "Play Vanilla";
+            this.btnPlayVanilla.UseVisualStyleBackColor = true;
+            this.btnPlayVanilla.Click += new System.EventHandler(this.btnPlayVanilla_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 495);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPlayVanilla);
             this.Controls.Add(this.btnOpenModPath);
             this.Controls.Add(this.txtBoxModPath);
             this.Controls.Add(this.label4);
@@ -225,7 +225,7 @@ namespace AmongUs_ModInstaller
         private System.Windows.Forms.TextBox od;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtBoxModPath;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPlayVanilla;
     }
 }
 

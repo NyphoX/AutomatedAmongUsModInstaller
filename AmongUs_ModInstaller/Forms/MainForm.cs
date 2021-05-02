@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -18,7 +17,7 @@ namespace AmongUs_ModInstaller
             InitializeComponent();
         }
 
-        private void UpdateInstalledListBox()
+        public void UpdateInstalledListBox()
         {
             listBoxInstalledMods.Items.Clear();
             listBoxInstalledMods.Items.AddRange(modInstallations.ToArray());
@@ -27,6 +26,8 @@ namespace AmongUs_ModInstaller
 
             if (cnt != 0)
                 listBoxInstalledMods.SelectedItem = listBoxInstalledMods.Items[0];
+
+            listBoxInstalledMods.Update();
         }
 
         private void UpdateAvailableListBox()
@@ -78,9 +79,7 @@ namespace AmongUs_ModInstaller
                     return;
                 }
 
-            modInstallations.Add(Manager.InstallMod(settings, selection, this));
-            settings.ModInstallations = JsonConvert.SerializeObject(modInstallations);
-            settings.Save();
+            Manager.InstallMod(settings, selection, this, modInstallations);
 
             UpdateInstalledListBox();
         }
@@ -99,10 +98,7 @@ namespace AmongUs_ModInstaller
             if (skip)
                 return;//TODO: check if this can ever happen
 
-            Manager.UninstallMod(settings, selection);
-            modInstallations.Remove(selection);
-            settings.ModInstallations = JsonConvert.SerializeObject(modInstallations);
-            settings.Save();
+            Manager.UninstallMod(settings, selection, modInstallations);
 
             UpdateInstalledListBox();
         }
@@ -121,7 +117,7 @@ namespace AmongUs_ModInstaller
             if (skip)
                 return;//TODO: check if this can ever happen
 
-            Manager.LaunchGame(settings, selection, this);
+            Manager.LaunchGame(settings, selection, this, modInstallations);
         }
 
         private void btnOpenGamePath_Click(object sender, EventArgs e)
@@ -134,7 +130,7 @@ namespace AmongUs_ModInstaller
             Process.Start("explorer.exe", settings.AAMIModdingFullPath);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnPlayVanilla_Click(object sender, EventArgs e)
         {
             Process.Start(Path.Combine(settings.AmongUsGameFullPath, settings.AmongUsGameExeName));
         }
