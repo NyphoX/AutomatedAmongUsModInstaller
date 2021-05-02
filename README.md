@@ -28,4 +28,8 @@ If the mod is on GitHub, create a new [issue](https://github.com/NyphoX/Automate
 
 A picture says more than a thousand words. So here's a video instead.
 
-[![AAMI - HowTo Video](https://img.youtube.com/vi/8s_X4Q165f8/0.jpg)](https://www.youtube.com/watch?v=8s_X4Q165f8)
+### QuickStart any installed mod
+[![AAMI - QuickStart Video](https://img.youtube.com/vi/Xo0ewyi5y-s/0.jpg)](https://www.youtube.com/watch?v=Xo0ewyi5y-s)
+
+### Install, play and uninstall mod
+[![AAMI - HowTo Video](https://img.youtube.com/vi/nAKN5leL8Ks/0.jpg)](https://www.youtube.com/watch?v=nAKN5leL8Ks)
