@@ -34,7 +34,7 @@ If the mod is on GitHub, create a new [issue](https://github.com/NyphoX/Automate
 
 ## How does it work?
 
-A picture says more than a thousand words. So here are two short video instead.
+A picture says more than a thousand words. So here are two short videos demonstrating AAMI instead.
 
 ### QuickStart any installed mod
 [![AAMI - QuickStart Video](https://img.youtube.com/vi/Xo0ewyi5y-s/0.jpg)](https://www.youtube.com/watch?v=Xo0ewyi5y-s)
