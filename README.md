@@ -1,39 +1,42 @@
 # AAMI - Automated Among Us Mod Installer
 
-![AAMI Icon](https://raw.githubusercontent.com/NyphoX/AutomatedAmongUsModInstaller/master/AmongUs_ModInstaller/aami.ico)
-
-AAMI is a standalone tool that is designed to simplify the process of modding Among Us.\
+<img align="left" width="200" height="200" src="https://raw.githubusercontent.com/NyphoX/AutomatedAmongUsModInstaller/master/AmongUs_ModInstaller/aami.ico"> AAMI is a standalone tool that is designed to simplify the process of modding Among Us.\
 It is intended to be used with the Steam version of the game.
 
-The goal is to stop players from having to perform  the same tedious copy-paste tasks, whenever a new version of their favorite mod is released or Among Us itself is updated.
+The goal is to stop players from having to perform  the same tedious copy-paste and delete tasks, whenever a new version of their favorite mod is released or Among Us itself is updated.
 
-Simply select the desired mod from a list, mod your game with a single click, and start playing. Apply mod-updates, which are automatically detected for you, with a single click. Switch between different mods in an instant. Or just start a quick round of vanilla Among Us while still keeping your mods installed.
+Simply select the desired mod from a list, mod your game with one click, and start playing. Apply automatically detected mod-updates with a single click. Switch between different mods in an instant. Or start a round of vanilla Among Us while still keeping your mods installed.
 
 AAMI is currently only developed for Windows.
 
 ## IMPORTANT
 
 __Before__ using AAMI, make sure your Steam installation of Among Us is "clean". This means that there is no mod installed and only the base Among Us game files are present. If you are unsure if this is the case, do a clean reinstall of Among Us following these steps:
- 1. Open Steam and click on Library > Right-Click on Among Us > Manage > Browse Local Files. Keep this window open.
- 2. Again, click on Library > Right-Click on Among Us > Manage > Uninstall. Confirm the uninstall prompt and wait until it is finished.
- 3. In the explorer window from step 1., check if there are any leftover files. Delete everything that is in this folder.
- 4. Open Steam and install Among Us as usual. You can now use AAMI and you will never have to mess with your Among Us folder again.
+ 1. Open Steam and click on _Library > Right-Click on Among Us > Manage > Browse Local Files_.\
+ Keep this window open.
+ 3. Again, click on _Library > Right-Click on Among Us > Manage > Uninstall_.\
+ Confirm the uninstall prompt and wait until it is finished.
+ 5. In the _explorer window from step 1._, check if there are any leftover files.\
+ Delete everything that is in this folder.
+ 7. _Open Steam and install Among Us as usual_.
+
+You can now use AAMI and you will never have to mess with your Among Us folder again.
 
 ## Features
 
- - Automatically detect Steam's installation path for Among Us. No setup required.
+ - No setup required. _Automatically detects Steam's installation path for Among Us._
  - Never changes files in your default Among Us installation again.
  - 1-Click-Installation, 1-Click-Deinstallation and 1-Click-Play for all available mods.
- - 1-Click-Update of installed mods. (Upon clicking "Play Mod", you're informed if there is an update available for the chosen mod and can choose to keep the old version or to update.)
+ - 1-Click-Update of installed mods. _Mod-specific settings/configurations are saved between mod-updates._
  - 1-Click-Play for Vanilla Among Us (Among Us without any mods).
- - Many more mods can be added by basically anyone on GitHub to the "available mods" list, without the need of updating your AAMI client.
- - If mods have been added that do require you to update your AMII client, you will be informed after starting the client. You're immediately redirected to the releases-page of this GitHub-repository, where you can download the new client, if you choose so.
+ - [Adding support for new mods](#why-is-mod-xyz-not-available) can be done by anyone on GitHub, without the need of updating the AAMI clients.
+ - For some added mods and changes to the AAMI client, a new version of AAMI is required. You will be informed about this after starting the client and have the option to automatically open the GitHub-website to download the new client.
 
 ## Download / Where to get it?
 
 Download the latest release here: https://github.com/NyphoX/AutomatedAmongUsModInstaller/releases/latest
 
-If you are updated from an older version of AAMI, it is recommended to first uninstall all mods using your old AAMI client. It will not break anything if you don't do this, but you will waste a few hundred MB if you don't do this multiple times.
+If you are updating from an older version of AAMI, your old mods will be automatically uninstalled. This saves you time and disk space and prevents things from breaking, when new AAMI functions/mods are added. Afterwards, you will have to reconfigure your mods ingame.
 
 ## Supported Mods
 
@@ -46,9 +49,13 @@ AAMI currently supports the following mods (more to come):
 
 If the mod is on GitHub, create a new [issue](https://github.com/NyphoX/AutomatedAmongUsModInstaller/issues) and link to the missing mod. If the mod just has to be extracted into the Among Us game folder, it can be added with an one-liner. If not, AAMI might need to be changed to support a wider variety of mods. If you know how to, you may also just create a pull request that I will merge afterwards.
 
-## Concerning updates to "Among Us" itself:
+## Updates (AAMI, Among Us, Mods)
 
-If Among Us is updated, some mods usually break and stop working until the mod in question is updated by the author. If you know that there was an update to Among Us, your __already installed mods__ will continue using the old version of the game and will - possibly - still be working. In such a case, it is recommended to wait until the mod author has updated the mod (see links under [Supported Mods](#supported-mods)) and then perform a clean uninstall and subsequent install using AAMI. The new install will then use your new version of Among Us. You will always get notified about a new version, when you click "Play Mod", so in this case you'll also know it is time to re-install the mod based on the new version.
+The only update you will never be notified of is updates from Innersloth to Among Us itself. You'll have to check if there was an update through your Steam client. If so, check whether the authors of your desired mods (see links under [Supported Mods](#supported-mods)) have already released a new version (AAMI tells you that a mod has received an update, but you should double-check the GitHub-repository).
+
+Refer to the following decision tree, if there are updates:
+
+<img align="center" src="https://user-images.githubusercontent.com/17164873/116836142-b9db5c00-abc5-11eb-9990-c22032ff380e.png">
 
 ## How does it work?
 
