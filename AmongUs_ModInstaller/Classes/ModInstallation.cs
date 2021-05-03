@@ -15,7 +15,7 @@
 
         public override string ToString()
         {
-            return modInfo.ToString();
+            return string.Format("{0} (Installed: {1}, Version: {2})", modInfo.name, installedTag, modInfo.version);
         }
     }
 }

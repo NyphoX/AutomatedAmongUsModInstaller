@@ -67,6 +67,7 @@ namespace AmongUs_ModInstaller
             // listBoxAvailableMods
             // 
             this.listBoxAvailableMods.FormattingEnabled = true;
+            this.listBoxAvailableMods.HorizontalScrollbar = true;
             this.listBoxAvailableMods.ItemHeight = 15;
             this.listBoxAvailableMods.Location = new System.Drawing.Point(12, 157);
             this.listBoxAvailableMods.Name = "listBoxAvailableMods";
@@ -94,6 +95,7 @@ namespace AmongUs_ModInstaller
             // listBoxInstalledMods
             // 
             this.listBoxInstalledMods.FormattingEnabled = true;
+            this.listBoxInstalledMods.HorizontalScrollbar = true;
             this.listBoxInstalledMods.ItemHeight = 15;
             this.listBoxInstalledMods.Location = new System.Drawing.Point(299, 157);
             this.listBoxInstalledMods.Name = "listBoxInstalledMods";
