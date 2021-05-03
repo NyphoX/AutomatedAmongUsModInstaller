@@ -98,9 +98,9 @@ namespace AmongUs_ModInstaller
             settings.Save();
         }
 
-        public static void LaunchGame(Properties.Settings settings, ModInstallation modInstallation, MainForm mainForm, List<ModInstallation> modInstallations)
+        public static void LaunchGame(Properties.Settings settings, ModInstallation modInstallation, MainForm mainForm, List<ModInstallation> modInstallations, List<ModInfo> modInfos)
         {
-            modInstallation = CheckModInstallationForUpdate(settings, modInstallation, mainForm, modInstallations);
+            modInstallation = CheckModInstallationForUpdate(settings, modInstallation, mainForm, modInstallations, modInfos);
 
             Process.Start(Path.Combine(modInstallation.absolutePath, settings.AmongUsGameExeName));
 
@@ -115,7 +115,7 @@ namespace AmongUs_ModInstaller
             df.Close();
         }
 
-        private static ModInstallation CheckModInstallationForUpdate(Properties.Settings settings, ModInstallation modInstallation, MainForm mainForm, List<ModInstallation> modInstallations)
+        private static ModInstallation CheckModInstallationForUpdate(Properties.Settings settings, ModInstallation modInstallation, MainForm mainForm, List<ModInstallation> modInstallations, List<ModInfo> modInfos)
         {
             //Check if there was a change in tag_name (an update) and offer to user to automatically update
             using (WebClient wc = new WebClient())
@@ -123,25 +123,42 @@ namespace AmongUs_ModInstaller
                 wc.Headers.Add("user-agent", "Automated Among Us Mod Installer (AAMI) for GitHub repositories");
 
                 string jsonRelease = wc.DownloadString(modInstallation.modInfo.permanentAPIURL);
-                string tag = JObject.Parse(jsonRelease)["tag_name"].ToString();
+                string newTag = JObject.Parse(jsonRelease)["tag_name"].ToString();
 
-                if (tag.Equals(modInstallation.installedTag))
+                if (newTag.Equals(modInstallation.installedTag))
                     return modInstallation;
 
                 //Ask user if he wants to update
-                if (MessageBox.Show("There was a new version found for the selected mod.\nDo you want AAMI to automatically update the mod for you?", "New mod version found", 
+                if (MessageBox.Show("There was a new version (" + newTag + ") found for the selected mod.\nDo you want AAMI to automatically update the mod for you?\n\nYour mod settings will be saved.", "New mod version found", 
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) != DialogResult.Yes)
                     return modInstallation;
 
+                //If mod info is removed from available list (client is not up to date!), don't update, show message and start non-updated game normally
+                ModInfo newModInfo = GetNewerModInfo(modInfos, modInstallation.modInfo);
+                if (newModInfo == null)
+                {
+                    MessageBox.Show("Could not update game", "AAMI could not update the mod you selected, as it is no longer available for your version of the AAMI client.\n\nYou should update your AAMI installation.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return modInstallation;
+                }
+
                 List<Tuple<string, string>> savedConfigFiles = SaveModConfigurationFiles(modInstallation);
                 UninstallMod(settings, modInstallation, modInstallations);
-                modInstallation = InstallMod(settings, modInstallation.modInfo, mainForm, modInstallations);
+                modInstallation = InstallMod(settings, newModInfo, mainForm, modInstallations);
                 RestoreModConfigurationFiles(modInstallation, savedConfigFiles);
 
                 mainForm.UpdateInstalledListBox();
 
                 return modInstallation;
             }
+        }
+
+        private static ModInfo GetNewerModInfo(List<ModInfo> modInfos, ModInfo modInfo)
+        {
+            foreach (ModInfo newModInfo in modInfos)
+                if (newModInfo.Equals(modInfo))
+                    return newModInfo;
+
+            return null;
         }
 
         private static List<Tuple<string, string>> SaveModConfigurationFiles(ModInstallation modInstallation)

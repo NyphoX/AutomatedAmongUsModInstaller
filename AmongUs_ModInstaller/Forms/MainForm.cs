@@ -117,7 +117,7 @@ namespace AmongUs_ModInstaller
             if (skip)
                 return;//TODO: check if this can ever happen
 
-            Manager.LaunchGame(settings, selection, this, modInstallations);
+            Manager.LaunchGame(settings, selection, this, modInstallations, modInfos);
         }
 
         private void btnOpenGamePath_Click(object sender, EventArgs e)
