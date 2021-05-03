@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AmongUs_ModInstaller
 {
@@ -9,6 +10,7 @@ namespace AmongUs_ModInstaller
         public string permanentAPIURL;
         public int assetId;
         public string AAMIversion;
+        public List<string> configFiles;
 
         public override string ToString()
         {

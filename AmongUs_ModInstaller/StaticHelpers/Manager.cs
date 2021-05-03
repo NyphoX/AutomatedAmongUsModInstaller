@@ -133,12 +133,44 @@ namespace AmongUs_ModInstaller
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) != DialogResult.Yes)
                     return modInstallation;
 
+                List<Tuple<string, string>> savedConfigFiles = SaveModConfigurationFiles(modInstallation);
                 UninstallMod(settings, modInstallation, modInstallations);
                 modInstallation = InstallMod(settings, modInstallation.modInfo, mainForm, modInstallations);
+                RestoreModConfigurationFiles(modInstallation, savedConfigFiles);
 
                 mainForm.UpdateInstalledListBox();
 
                 return modInstallation;
+            }
+        }
+
+        private static List<Tuple<string, string>> SaveModConfigurationFiles(ModInstallation modInstallation)
+        {
+            List<Tuple<string, string>> savedConfigFiles = new List<Tuple<string, string>>();
+            foreach (string configFileSubPath in modInstallation.modInfo.configFiles)
+            {
+                string configFilePath = Path.Combine(modInstallation.absolutePath, configFileSubPath);
+                if (!File.Exists(configFilePath))
+                    continue;
+
+                string tempFile = Path.GetTempFileName();
+                File.Copy(configFilePath, tempFile, true);
+                savedConfigFiles.Add(new Tuple<string, string>(configFileSubPath, tempFile));
+            }
+
+            return savedConfigFiles;
+        }
+
+        private static void RestoreModConfigurationFiles(ModInstallation modInstallation, List<Tuple<string, string>> savedConfigFiles)
+        {
+            foreach (Tuple<string, string> tuple in savedConfigFiles)
+            {
+                string configFileSubPath = tuple.Item1;
+                string tempFile = tuple.Item2;
+                string combinedPath = Path.Combine(modInstallation.absolutePath, configFileSubPath);
+                Directory.CreateDirectory(Path.GetDirectoryName(combinedPath));
+                File.Copy(tempFile, Path.Combine(combinedPath));
+                File.Delete(tempFile);
             }
         }
     }
