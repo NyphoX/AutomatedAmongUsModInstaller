@@ -72,8 +72,8 @@ namespace AmongUs_ModInstaller
             foreach (ModInstallation modInstallation in modInstallations)
                 if (modInstallation.modInfo.Equals(selection))
                 {
-                    MessageBox.Show("This mod is already installed.\nSelect it under \"Installed Mods\" and click \"Play Mod\".\n\n" + 
-                        "If this is the \"latest\" version of a mod and there was an update or if Among Us itself was updated, uninstall the mod and install it again.", 
+                    MessageBox.Show("This mod is already installed (" + modInstallation.installedTag + ").\nSelect it under \"Installed Mods\" and click \"Play Mod\".\n\n" + 
+                        "If you want to update this mod (only possible with \"latest\"), select the mod on the right and click \"Play Mod\".", 
                         "Mod already installed",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
