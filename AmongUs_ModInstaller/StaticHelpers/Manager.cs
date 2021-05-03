@@ -106,12 +106,12 @@ namespace AmongUs_ModInstaller
 
             DialogForm df = new DialogForm("Starting game...", "The modded game has been started, please be patient.\n\n" + 
                 "This may take anywhere from a few seconds up to a \nfew minutes, depending on the installed mod and \nyour hardware.\n\n" + 
-                "This window will close itself after 15 seconds.");
+                "This window will close itself after 10 seconds.");
             
             df.Show(mainForm);
             df.Size = new System.Drawing.Size(330, 165);
             df.Update();//Hack, so Windows actually displays the text in the new form before putting everything to sleep...
-            System.Threading.Thread.Sleep(15000);
+            System.Threading.Thread.Sleep(10000);
             df.Close();
         }
 
