@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
@@ -14,6 +15,8 @@ namespace AmongUs_ModInstaller
         private static Properties.Settings defaultSettings = Properties.Settings.Default;
         private static List<ModInfo> modInfos;
         private static List<ModInstallation> modInstallations;
+
+        private static bool isFreshInstall = false;
 
         public static Properties.Settings GetSettings()
         {
@@ -61,7 +64,7 @@ namespace AmongUs_ModInstaller
             List<string> libraryPaths = new List<string>();
             libraryPaths.Add(steamPath);
 
-            string steamLibraryFoldersFile = System.IO.Path.Combine(steamPath, defaultSettings.SteamLibraryFoldersFileSublocation);
+            string steamLibraryFoldersFile = Path.Combine(steamPath, defaultSettings.SteamLibraryFoldersFileSublocation);
 
             Gameloop.Vdf.Linq.VProperty libraries = VdfConvert.Deserialize(System.IO.File.ReadAllText(steamLibraryFoldersFile));
             foreach (Gameloop.Vdf.Linq.VProperty vProperty in libraries.Value)
@@ -75,7 +78,7 @@ namespace AmongUs_ModInstaller
                 if (!System.IO.File.Exists(gameAppManifest))
                     continue;
 
-                defaultSettings.AmongUsGameFullPath = System.IO.Path.Combine(path, defaultSettings.SteamCommonFolderSubpath, defaultSettings.AmongUsGameFolderName);
+                defaultSettings.AmongUsGameFullPath = Path.Combine(path, defaultSettings.SteamCommonFolderSubpath, defaultSettings.AmongUsGameFolderName);
                 defaultSettings.IsGamePathSet = true;
                 defaultSettings.Save();
                 break;
@@ -90,12 +93,25 @@ namespace AmongUs_ModInstaller
             if (defaultSettings.IsAAMIModdingFullPathSet)
                 return;
 
-            defaultSettings.AAMIModdingFullPath = System.IO.Path.Combine(System.IO.Directory.GetParent(defaultSettings.AmongUsGameFullPath).FullName, defaultSettings.AAMIModdingFolderName);
+            isFreshInstall = true;
+
+            defaultSettings.AAMIModdingFullPath = Path.Combine(Directory.GetParent(defaultSettings.AmongUsGameFullPath).FullName, defaultSettings.AAMIModdingFolderName);
             defaultSettings.IsAAMIModdingFullPathSet = true;
             defaultSettings.Save();
 
-            if (!System.IO.Directory.Exists(defaultSettings.AAMIModdingFullPath))
-                System.IO.Directory.CreateDirectory(defaultSettings.AAMIModdingFullPath);
+            //Create folder if it doesn't exist. If it exists and it's a fresh install, delete old folders from previous version (can't use them anyway)
+            if (!Directory.Exists(defaultSettings.AAMIModdingFullPath))
+                Directory.CreateDirectory(defaultSettings.AAMIModdingFullPath);
+            else if (isFreshInstall)
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(defaultSettings.AAMIModdingFullPath);
+
+                foreach (FileInfo file in dirInfo.GetFiles())
+                    file.Delete();
+
+                foreach (DirectoryInfo dir in dirInfo.GetDirectories())
+                    dir.Delete(true);
+            }
         }
 
         private static void LoadModInstallations()
@@ -141,8 +157,8 @@ namespace AmongUs_ModInstaller
 
             if (newerClientRequired)
             {
-                if (MessageBox.Show("There are new mods, that can now be managed by AAMI.\n\n" +
-                    "In order for AAMI to manage these new mods for you, you must first update to the newest AAMI client.\n\n" + 
+                if (MessageBox.Show("There are (new) mods, that can now be (better) managed by AAMI.\n\n" +
+                    "In order for AAMI to manage mods for you without any problems, you must first update to the newest AAMI client.\n\n" + 
                     "Do you want to go to the GitHub-release website now?", 
                     "New AAMI client available", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                 {
