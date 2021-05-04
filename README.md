@@ -56,9 +56,9 @@ If the mod is on GitHub, create a new [issue](https://github.com/NyphoX/Automate
 
 ## Updates (AAMI, Among Us, Mods)
 
-The only type of update you will never be notified about is updates from InnerSloth to Among Us itself. You'll have to check if there was an update through your Steam client. If so, check whether the authors of your desired mods (see links under [Supported Mods](#supported-mods)) have already released a new version (AAMI tells you that a mod has received an update, but you should double-check the GitHub-repository).
+The only type of update you will never be notified about by AAMI are updates from InnerSloth to Among Us itself. You'll have to check if there was an update through your Steam client. If so, check whether the authors of your desired mods (see links under [Supported Mods](#supported-mods)) have already released a new version. AAMI will also tell you that a mod has received an update when clicking "Play Mod", but you should double-check the GitHub-repository.
 
-Refer to the following decision tree, if there are updates:
+Refer to the following decision tree to see what to do on updates:
 
 <p align="center"><img src="https://user-images.githubusercontent.com/17164873/116947770-e2269180-ac7d-11eb-8032-78a45b2ef795.png"></p>
 
