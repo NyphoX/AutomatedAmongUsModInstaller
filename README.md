@@ -35,7 +35,7 @@ You can now use AAMI and you will never have to mess with your Among Us folder a
  - 1-Click-Update of installed mods. _Mod-specific settings/configurations are saved between mod-updates._
  - 1-Click-Play for Vanilla Among Us (Among Us without any mods).
  - [Adding support for new mods](#why-is-mod-xyz-not-available) can be done by anyone on GitHub, without the need of updating the AAMI clients.
- - For some new mods and changes to the AAMI client, a new version of AAMI must be installed. You will be informed about this after starting the client and have the option to automatically open the GitHub-website to download the new client. Read the section about [Updates](#updates-aami-among-us-mods) to learn more update AAMI's update behavior.
+ - For some new mods and changes to the AAMI client, a new version of AAMI must be installed. You will be informed about this after starting the client and have the option to automatically open the GitHub-website to download the new client. Read the section about [Updates](#updates-aami-among-us-mods) to learn more about AAMI's update behavior.
 
 ## Download / Where to get it?
 
