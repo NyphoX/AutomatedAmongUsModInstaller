@@ -10,7 +10,7 @@ AAMI is currently only developed for Windows.
 
 ## How does it work?
 
-I could go on describing how this mod works in all detail. But that would most likely be boring. Have a look at how AAMI works in this short video. (Clicking on the video opens it on YouTube.)
+I could go on describing how this mod works in all detail. But that would most likely be boring. Have a look at how AAMI works in this short video (3:05). (Clicking on the video opens it on YouTube.)
 
 <p align="center"><a href="https://www.youtube.com/watch?v=51nVjxGa6K0"><img src="https://user-images.githubusercontent.com/17164873/116954130-69303580-ac8f-11eb-8d10-b9e5b3682317.png"></a></p>
 
