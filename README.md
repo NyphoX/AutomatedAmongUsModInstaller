@@ -9,6 +9,12 @@ Simply select the desired mod from a list, mod your game with one click, and sta
 
 AAMI is currently only developed for Windows.
 
+## How does it work?
+
+I could go on describing how this mod works in all detail. But that would most likely be boring. Have a look at how AAMI works in this short video.
+
+TODO: embed video (centered?)
+
 ## IMPORTANT
 
 __Before__ using AAMI, make sure your Steam installation of Among Us is "clean". This means that there is no mod installed and only the base Among Us game files are present. If you are unsure if this is the case, do a clean reinstall of Among Us following these steps:
@@ -30,7 +36,7 @@ You can now use AAMI and you will never have to mess with your Among Us folder a
  - 1-Click-Update of installed mods. _Mod-specific settings/configurations are saved between mod-updates._
  - 1-Click-Play for Vanilla Among Us (Among Us without any mods).
  - [Adding support for new mods](#why-is-mod-xyz-not-available) can be done by anyone on GitHub, without the need of updating the AAMI clients.
- - For some added mods and changes to the AAMI client, a new version of AAMI is required. You will be informed about this after starting the client and have the option to automatically open the GitHub-website to download the new client.
+ - For some new mods and changes to the AAMI client, a new version of AAMI must be installed. You will be informed about this after starting the client and have the option to automatically open the GitHub-website to download the new client. Read the section about [Updates](#updates-aami-among-us-mods) to learn more update AAMI's update behavior.
 
 ## Download / Where to get it?
 
@@ -55,13 +61,7 @@ The only type of update you will never be notified about is updates from Innersl
 
 Refer to the following decision tree, if there are updates:
 
-<img align="center" src="https://user-images.githubusercontent.com/17164873/116836142-b9db5c00-abc5-11eb-9990-c22032ff380e.png">
-
-## How does it work?
-
-A picture says more than a thousand words. Have a look at how AAMI works:
-
-TODO: embed screenshots
+<p align="center"><img src="https://user-images.githubusercontent.com/17164873/116947770-e2269180-ac7d-11eb-8032-78a45b2ef795.png"></p>
 
 ## Windows protected your PC / Microsoft Defender SmartScreen
 
