@@ -14,7 +14,7 @@ I could go on describing how this mod works in all detail. But that would most l
 
 TODO: embed video (centered?)
 
-## IMPORTANT
+## Important: Read before using AAMI
 
 __Before__ using AAMI, make sure your Steam installation of Among Us is "clean". This means that there is no mod installed and only the base Among Us game files are present. If you are unsure if this is the case, do a clean reinstall of Among Us following these steps:
  1. Open Steam and click on _Library > Right-Click on Among Us > Manage > Browse Local Files_.\
