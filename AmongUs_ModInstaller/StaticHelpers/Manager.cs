@@ -186,7 +186,7 @@ namespace AmongUs_ModInstaller
                 string tempFile = tuple.Item2;
                 string combinedPath = Path.Combine(modInstallation.absolutePath, configFileSubPath);
                 Directory.CreateDirectory(Path.GetDirectoryName(combinedPath));
-                File.Copy(tempFile, Path.Combine(combinedPath));
+                File.Copy(tempFile, Path.Combine(combinedPath), true);
                 File.Delete(tempFile);
             }
         }
