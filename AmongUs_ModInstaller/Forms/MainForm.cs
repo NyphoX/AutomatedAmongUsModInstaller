@@ -49,7 +49,7 @@ namespace AmongUs_ModInstaller
             HideCaret(txtBoxGamePath.Handle);
             HideCaret(txtBoxModPath.Handle);
 
-            Startup.LoadSettings();
+            Startup.LoadSettings(this);
 
             settings = Startup.GetSettings();
             modInfos = Startup.GetModInfos();

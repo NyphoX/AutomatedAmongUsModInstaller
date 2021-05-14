@@ -239,5 +239,29 @@ namespace AmongUs_ModInstaller.Properties {
                 this["ModInstallations"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.github.com/repos/NyphoX/AutomatedAmongUsModInstaller/releases/latest")]
+        public string JSONLatestAAMIRelease {
+            get {
+                return ((string)(this["JSONLatestAAMIRelease"]));
+            }
+            set {
+                this["JSONLatestAAMIRelease"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AAMISettingsUpgradeRequired {
+            get {
+                return ((bool)(this["AAMISettingsUpgradeRequired"]));
+            }
+            set {
+                this["AAMISettingsUpgradeRequired"] = value;
+            }
+        }
     }
 }

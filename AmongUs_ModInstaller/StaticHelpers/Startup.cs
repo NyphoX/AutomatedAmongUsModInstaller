@@ -1,9 +1,12 @@
-﻿using Gameloop.Vdf;
+﻿using AmongUs_ModInstaller.Forms;
+using Gameloop.Vdf;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
@@ -128,18 +131,62 @@ namespace AmongUs_ModInstaller
                 modInstallations = new List<ModInstallation>();
         }
 
-        private static bool DownloadJSONModList()
+        private static bool UpdateAAMI(MainForm mainForm)
         {
-            modInfos = new List<ModInfo>();
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            Version AAMIversion = new Version(FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion);
 
             try
             {
                 using (WebClient wc = new WebClient())
                 {
+                    //Check if there is an update available and get information from JSON
                     wc.Headers.Add("user-agent", "Automated Among Us Mod Installer (AAMI) for GitHub repositories");
-                    string json = wc.DownloadString(defaultSettings.JSONModlistURL);
-                    modInfos = JsonConvert.DeserializeObject<List<ModInfo>>(json);
+                    string jsonRelease = wc.DownloadString(defaultSettings.JSONLatestAAMIRelease);
+                    JToken jToken = JObject.Parse(jsonRelease);
+                    Version newAAMIVersion = new Version(jToken["tag_name"].ToString()[1..]);
+
+                    if (AAMIversion.CompareTo(newAAMIVersion) >= 0)
+                        return true;
+
+                    string zipDownloadURL = jToken["assets"][defaultSettings.IsCPUArchitecture64Bit ? 0 : 1]["browser_download_url"].ToString();
+
+                    //Ask user if he wants to update
+                    if (MessageBox.Show("A new version of AAMI is available for download. " +
+                        "These updates include possible bugfixes for mod installation, quality of life improvements and support for a multitide of new mods.\n\n" +
+                        "Do you want to automatically update to the newest release?",
+                        "Update available for AAMI client", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.No)
+                        return true;
+
+                    //Show info window that we are doing something in the background...
+                    DialogForm df = new DialogForm("Updating AAMI...", "Downloading and installing new version of AAMI...\n ");//This needs a linebreak+space at the end, so autosize works correctly.
+                    df.Show(mainForm);
+
+                    //Download new version
+                    string tempFile = Path.GetTempFileName();
+                    wc.DownloadFile(zipDownloadURL, tempFile);
+
+                    //Rename the currently executing assembly
+                    string currentExeDir = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+                    string currentExePath = Directory.GetFiles(currentExeDir, "*.exe", SearchOption.TopDirectoryOnly)[0];
+                    string oldExePath = currentExePath + ".old";
+                    File.Delete(oldExePath);
+                    File.Move(currentExePath, oldExePath);
+
+                    //Extract zip and rename new exe to whatever the user named his file
+                    ZipFile.ExtractToDirectory(tempFile, currentExeDir, true);
+                    File.Delete(tempFile);
+                    File.Move(Path.Combine(currentExeDir, defaultSettings.IsCPUArchitecture64Bit ? "AAMI_x64.exe" : "AAMI_x86.exe"), currentExePath);
+
+                    //Start the new client
+                    Process.Start(new ProcessStartInfo("cmd.exe", "/C \"" + currentExePath + "\"")
+                    {
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        WindowStyle = ProcessWindowStyle.Hidden
+                    });
                 }
+                Environment.Exit(0);
             }
             catch (Exception)
             {
@@ -151,7 +198,19 @@ namespace AmongUs_ModInstaller
                 return false;
             }
 
-            return true;
+            return false;
+        }
+
+        private static void DownloadJSONModList()
+        {
+            modInfos = new List<ModInfo>();
+
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("user-agent", "Automated Among Us Mod Installer (AAMI) for GitHub repositories");
+                string json = wc.DownloadString(defaultSettings.JSONModlistURL);
+                modInfos = JsonConvert.DeserializeObject<List<ModInfo>>(json);
+            }
         }
 
         private static void RemoveUnsupportedModsFromModList()
@@ -159,50 +218,43 @@ namespace AmongUs_ModInstaller
             Assembly assembly = Assembly.GetExecutingAssembly();
             Version AAMIversion = new Version(FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion);
 
-            bool newerClientRequired = false;
-            Version minimumVersion = new Version("0.0.0");
             List<ModInfo> modsToRemove = new List<ModInfo>();
             foreach (ModInfo modInfo in modInfos)
             {
                 Version modVersion = new Version(modInfo.AAMIversion);
                 if (AAMIversion.CompareTo(modVersion) < 0)
-                {
-                    newerClientRequired = true;
-                    minimumVersion = (minimumVersion.CompareTo(modVersion) < 0) ? modVersion : minimumVersion;
                     modsToRemove.Add(modInfo);
-                }
             }
 
             foreach (ModInfo modInfo in modsToRemove)
                 modInfos.Remove(modInfo);
-
-            if (newerClientRequired)
-            {
-                if (MessageBox.Show("There are (new) mods, that can now be (better) managed by the AAMI client.\n\n" +
-                    "In order for AAMI to manage mods for you without any problems, you must first update to the newest AAMI client. The minimum version to support all mods is AAMI v" + minimumVersion + "\n\n" + 
-                    "Do you want to go to the GitHub-release website now?", 
-                    "New AAMI client available", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-                {
-                    Process.Start("explorer.exe", "https://github.com/NyphoX/AutomatedAmongUsModInstaller/releases/latest");
-                    Environment.Exit(0);
-                }
-            }
         }
 
-        public static void LoadSettings()
+        public static void LoadSettings(MainForm mainForm)
         {
+            //First check if this is an upgrade from old AAMI, then we can go on and actually check the settings.
+            if (defaultSettings.AAMISettingsUpgradeRequired)
+            {
+                defaultSettings.Upgrade();
+                defaultSettings.AAMISettingsUpgradeRequired = false;
+                defaultSettings.Save();
+            }
+
             GetOSArchitecture();
             GetSteamSetupFromRegistry();
 
             if (!defaultSettings.IsGamePathSet)
-                Environment.Exit(0);
+                Application.Exit();
 
             PrepareModdingDirectory();
             LoadModInstallations();
 
-            isOffline = !DownloadJSONModList();
+            isOffline = !UpdateAAMI(mainForm);
             if (!isOffline)
+            {
+                DownloadJSONModList();
                 RemoveUnsupportedModsFromModList();
+            }
         }
     }
 }

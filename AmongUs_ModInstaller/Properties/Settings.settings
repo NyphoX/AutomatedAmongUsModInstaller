@@ -56,5 +56,11 @@
     <Setting Name="ModInstallations" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="JSONLatestAAMIRelease" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.github.com/repos/NyphoX/AutomatedAmongUsModInstaller/releases/latest</Value>
+    </Setting>
+    <Setting Name="AAMISettingsUpgradeRequired" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
