@@ -64,7 +64,7 @@ Refer to the following decision tree to see what to do on updates:
 
 ## Windows protected your PC / Microsoft Defender SmartScreen
 
-Windows may tell you _during the first start_ of AAMI, that it is unrecognized app/from an unknown publisher. This may happen when you are using a new release. You can continue by clicking on "More Info" and then "Run anyway" in this case, as shown below.
+Windows may tell you _during the first start_ of AAMI, that it is an unrecognized app/from an unknown publisher. This may happen when you are using a new release. You can continue by clicking on "More Info" and then "Run anyway" in this case, as shown below.
 
 If in doubt, check the files yourself or refer to the VirusTotal.com scans provided for every release.
 
