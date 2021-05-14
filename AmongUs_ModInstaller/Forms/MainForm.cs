@@ -55,6 +55,14 @@ namespace AmongUs_ModInstaller
             modInfos = Startup.GetModInfos();
             modInstallations = Startup.GetModInstallations();
 
+            //Disable everything that needs an internet connection
+            if (Startup.IsOffline())
+            {
+                btnInstallMod.Enabled = false;
+                this.Text += " (OFFLINE MODE)";
+                Manager.SetOfflineMode();
+            }
+
             txtBoxGamePath.Text = settings.AmongUsGameFullPath;
             txtBoxModPath.Text = settings.AAMIModdingFullPath;
 
@@ -118,6 +126,8 @@ namespace AmongUs_ModInstaller
                 return;//TODO: check if this can ever happen
 
             Manager.LaunchGame(settings, selection, this, modInstallations, modInfos);
+
+            UpdateInstalledListBox();
         }
 
         private void btnOpenGamePath_Click(object sender, EventArgs e)

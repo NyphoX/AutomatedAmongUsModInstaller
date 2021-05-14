@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
@@ -13,13 +14,23 @@ namespace AmongUs_ModInstaller
 {
     static class Manager
     {
+        private static bool isOffline = false;
+
+        public static void SetOfflineMode()
+        {
+            isOffline = true;
+        }
+
         public static ModInstallation InstallMod(Properties.Settings settings, ModInfo modInfo, MainForm mainForm, List<ModInstallation> modInstallations)
         {
+            if (isOffline)
+                return null;
+
             DialogForm df = new DialogForm("Installing...", "Downloading and installing mod...");
             df.Size = new System.Drawing.Size(250, 72);
             df.Show(mainForm);
 
-            //Download GitHub release file, to get tag (version that is not "latest") that is saved for this installation (update-functionality)
+            //Download GitHub release file to get tag (version that is not "latest") that is saved for this installation (update-functionality)
             string jsonRelease = "";
             string tag = "";
             using (WebClient wc = new WebClient())
@@ -36,6 +47,18 @@ namespace AmongUs_ModInstaller
             CopyBaseGame(modInstallation, settings);
 
             string tempZipFile = DownloadZip(modInfo, jsonRelease);
+            if (tempZipFile.Equals(""))
+            {
+                Directory.Delete(modInstallation.absolutePath, true);
+                df.Close();
+
+                MessageBox.Show("The mod archive could not be located on the configured GitHub repository. " +
+                    "Please check manually, if you can find an archive on the release page of the selected mod.\n\n" +
+                    "If this issue persists and is not due to being offline or experiencing similar problems, please open an issue on AAMI's GitHub or the GitHub of the mod in question.",
+                    "Installation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return null;
+            }
 
             ExtractZip(modInstallation, tempZipFile);
             File.Delete(tempZipFile);
@@ -70,14 +93,49 @@ namespace AmongUs_ModInstaller
 
         private static string DownloadZip(ModInfo modInfo, string jsonRelease)
         {
-            
+            string zipDownloadURL = "";
+            bool isModArchiveLocationFound = false;
+
+            JToken assets = JObject.Parse(jsonRelease)["assets"];
+
+            if (!assets.HasValues)
+                return "";
+
+            //Try to directly access archive by assetId, check if it is an archive (zip/rar)
+            if (modInfo.assetId < assets.Count())
+            {
+                zipDownloadURL = assets[modInfo.assetId]["browser_download_url"].ToString();
+                isModArchiveLocationFound = zipDownloadURL.EndsWith(".zip") || zipDownloadURL.EndsWith(".rar");
+            }
+
+            //If assetId is incorrect or not an archive, try to find the mod (assume archive with largest size is the mod) instead of error behavior
+            if (!isModArchiveLocationFound)
+            {
+                string currentDownloadURL;
+                int largestSize, currentSize;
+                largestSize = -1;
+
+                foreach (JToken asset in assets)
+                {
+                    currentDownloadURL = asset["browser_download_url"].ToString();
+                    currentSize = int.Parse(asset["size"].ToString());
+
+                    if (largestSize >= currentSize || !(currentDownloadURL.EndsWith(".zip") || currentDownloadURL.EndsWith(".rar")))
+                        continue;
+
+                    zipDownloadURL = currentDownloadURL;
+                    largestSize = currentSize;
+                    isModArchiveLocationFound = true;
+                }
+            }
+
+            if (!isModArchiveLocationFound)
+                return "";
+
             string tempFile = Path.GetTempFileName();
             using (WebClient wc = new WebClient())
             {
                 wc.Headers.Add("user-agent", "Automated Among Us Mod Installer (AAMI) for GitHub repositories");
-
-                //Download zip that's specified for release to temporary file
-                string zipDownloadURL = JObject.Parse(jsonRelease)["assets"][modInfo.assetId]["browser_download_url"].ToString();
                 wc.DownloadFile(zipDownloadURL, tempFile);
             }
 
@@ -100,7 +158,12 @@ namespace AmongUs_ModInstaller
 
         public static void LaunchGame(Properties.Settings settings, ModInstallation modInstallation, MainForm mainForm, List<ModInstallation> modInstallations, List<ModInfo> modInfos)
         {
-            modInstallation = CheckModInstallationForUpdate(settings, modInstallation, mainForm, modInstallations, modInfos);
+            if (!isOffline)
+            {
+                modInstallation = CheckModInstallationForUpdate(settings, modInstallation, mainForm, modInstallations, modInfos);
+                if (modInstallation == null)
+                    return;
+            }
 
             Process.Start(Path.Combine(modInstallation.absolutePath, settings.AmongUsGameExeName));
 
@@ -110,14 +173,14 @@ namespace AmongUs_ModInstaller
             
             df.Show(mainForm);
             df.Size = new System.Drawing.Size(330, 165);
-            df.Update();//Hack, so Windows actually displays the text in the new form before putting everything to sleep...
+            df.Update();//Windows should display the text in the new form. BEFORE putting everything to sleep...
             System.Threading.Thread.Sleep(10000);
             df.Close();
         }
 
         private static ModInstallation CheckModInstallationForUpdate(Properties.Settings settings, ModInstallation modInstallation, MainForm mainForm, List<ModInstallation> modInstallations, List<ModInfo> modInfos)
         {
-            //Check if there was a change in tag_name (an update) and offer to user to automatically update
+            //Check if there was a change in tag_name (an update) and offer user to automatically update
             using (WebClient wc = new WebClient())
             {
                 wc.Headers.Add("user-agent", "Automated Among Us Mod Installer (AAMI) for GitHub repositories");
@@ -143,7 +206,11 @@ namespace AmongUs_ModInstaller
 
                 List<Tuple<string, string>> savedConfigFiles = SaveModConfigurationFiles(modInstallation);
                 UninstallMod(settings, modInstallation, modInstallations);
+
                 modInstallation = InstallMod(settings, newModInfo, mainForm, modInstallations);
+                if (modInstallation == null)
+                    return null;
+
                 RestoreModConfigurationFiles(modInstallation, savedConfigFiles);
 
                 mainForm.UpdateInstalledListBox();

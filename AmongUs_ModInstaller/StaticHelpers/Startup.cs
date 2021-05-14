@@ -17,6 +17,7 @@ namespace AmongUs_ModInstaller
         private static List<ModInstallation> modInstallations;
 
         private static bool isFreshInstall = false;
+        private static bool isOffline = true;
 
         public static Properties.Settings GetSettings()
         {
@@ -31,6 +32,11 @@ namespace AmongUs_ModInstaller
         public static List<ModInstallation> GetModInstallations()
         {
             return modInstallations;
+        }
+
+        public static bool IsOffline()
+        {
+            return isOffline;
         }
 
         private static void GetOSArchitecture()
@@ -122,17 +128,30 @@ namespace AmongUs_ModInstaller
                 modInstallations = new List<ModInstallation>();
         }
 
-        private static void DownloadJSONModList()
+        private static bool DownloadJSONModList()
         {
-            using (WebClient wc = new WebClient())
-            {
-                wc.Headers.Add("user-agent", "Automated Among Us Mod Installer (AAMI) for GitHub repositories");
-                string json = wc.DownloadString(defaultSettings.JSONModlistURL);
-                modInfos = JsonConvert.DeserializeObject<List<ModInfo>>(json);
+            modInfos = new List<ModInfo>();
 
-                if (modInfos == null)
-                    modInfos = new List<ModInfo>();
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers.Add("user-agent", "Automated Among Us Mod Installer (AAMI) for GitHub repositories");
+                    string json = wc.DownloadString(defaultSettings.JSONModlistURL);
+                    modInfos = JsonConvert.DeserializeObject<List<ModInfo>>(json);
+                }
             }
+            catch (Exception)
+            {
+                if (MessageBox.Show("AAMI was unable to download the current mod list from GitHub. This may be due to your internet connection or a problem with GitHub itself.\n\n" +
+                    "You may use AAMI in \"offline mode\" to start the game with or without mods, but will be unable to update or install new mods. Do you want to continue in \"offline mode\"?",
+                    "Unable to download mod list", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.No)
+                    Environment.Exit(0);
+
+                return false;
+            }
+
+            return true;
         }
 
         private static void RemoveUnsupportedModsFromModList()
@@ -181,8 +200,9 @@ namespace AmongUs_ModInstaller
             PrepareModdingDirectory();
             LoadModInstallations();
 
-            DownloadJSONModList();
-            RemoveUnsupportedModsFromModList();
+            isOffline = !DownloadJSONModList();
+            if (!isOffline)
+                RemoveUnsupportedModsFromModList();
         }
     }
 }
