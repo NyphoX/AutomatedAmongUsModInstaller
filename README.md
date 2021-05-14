@@ -34,7 +34,7 @@ You can now use AAMI and you will never have to mess with your Among Us folder a
  - 1-Click-Installation, 1-Click-Deinstallation and 1-Click-Play for all available mods.
  - 1-Click-Update of installed mods. _Mod-specific settings/configurations are saved between mod-updates._
  - 1-Click-Play for Vanilla Among Us (Among Us without any mods).
- - 1-Click-Update for AAMI itself. _All mod installations are saved._ You will be informed about these updates when starting AAMI. Read the section about [Updates](#updates-aami-among-us-mods) to learn more about AAMI's (and ideally also your) update behavior.
+ - 1-Click-Update for AAMI itself. _All mod installations are saved._ You will be informed about updates when starting AAMI. Read the section about [Updates](#updates-aami-among-us-mods) to learn more about AAMI's (and ideally also your) update behavior.
  - [Adding support for new mods](#why-is-mod-xyz-not-available) can be done by anyone on GitHub.
 
 ## Download / Where to get it?
