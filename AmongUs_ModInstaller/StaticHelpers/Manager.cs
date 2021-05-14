@@ -26,8 +26,7 @@ namespace AmongUs_ModInstaller
             if (isOffline)
                 return null;
 
-            DialogForm df = new DialogForm("Installing...", "Downloading and installing mod...");
-            df.Size = new System.Drawing.Size(250, 72);
+            DialogForm df = new DialogForm("Installing...", "Downloading and installing mod...\n ");//This needs a linebreak+space at the end, so autosize works correctly.
             df.Show(mainForm);
 
             //Download GitHub release file to get tag (version that is not "latest") that is saved for this installation (update-functionality)
@@ -169,10 +168,9 @@ namespace AmongUs_ModInstaller
 
             DialogForm df = new DialogForm("Starting game...", "The modded game has been started, please be patient.\n\n" + 
                 "This may take anywhere from a few seconds up to a \nfew minutes, depending on the installed mod and \nyour hardware.\n\n" + 
-                "This window will close itself after 10 seconds.");
-            
+                "This window will close itself after 10 seconds.\n ");//This needs a linebreak+space at the end, so autosize works correctly.
+
             df.Show(mainForm);
-            df.Size = new System.Drawing.Size(330, 165);
             df.Update();//Windows should display the text in the new form. BEFORE putting everything to sleep...
             System.Threading.Thread.Sleep(10000);
             df.Close();
