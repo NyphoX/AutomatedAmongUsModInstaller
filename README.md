@@ -41,7 +41,7 @@ You can now use AAMI and you will never have to mess with your Among Us folder a
 
 Download the latest release here: https://github.com/NyphoX/AutomatedAmongUsModInstaller/releases/latest
 
-If you are updating from an older version of AAMI, your old mods will be automatically uninstalled. This saves you time and disk space and prevents things from breaking, when new AAMI functions/mods are added. Afterwards, you will have to reconfigure your mods ingame.
+If you are updating from an older version of AAMI, your old mods will be automatically uninstalled. This saves you time and disk space and prevents things from breaking, when new AAMI functions/mods are added. Afterwards, you will have to reconfigure your mods ingame. (I try to avoid this scenario as much as possible.)
 
 ## Supported Mods
 
@@ -64,7 +64,7 @@ Refer to the following decision tree to see what to do on updates:
 
 ## Windows protected your PC / Microsoft Defender SmartScreen
 
-Windows may tell you _during the first start_ of AAMI, that it is unrecognized app/from an unknown publisher. This may happen when you are using a new release. You can continue by clicking on "More Info" and then "Run anyway" in this case, as shown below.
+Windows may tell you _during the first start_ of AAMI, that it is an unrecognized app/from an unknown publisher. This may happen when you are using a new release. You can continue by clicking on "More Info" and then "Run anyway" in this case, as shown below.
 
 If in doubt, check the files yourself or refer to the VirusTotal.com scans provided for every release.
 
