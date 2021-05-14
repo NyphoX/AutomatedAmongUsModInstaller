@@ -178,7 +178,7 @@ namespace AmongUs_ModInstaller
 
             if (newerClientRequired)
             {
-                if (MessageBox.Show("There are (new) mods, that can now be (better) managed by AAMI.\n\n" +
+                if (MessageBox.Show("There are (new) mods, that can now be (better) managed by the AAMI client.\n\n" +
                     "In order for AAMI to manage mods for you without any problems, you must first update to the newest AAMI client. The minimum version to support all mods is AAMI v" + minimumVersion + "\n\n" + 
                     "Do you want to go to the GitHub-release website now?", 
                     "New AAMI client available", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
