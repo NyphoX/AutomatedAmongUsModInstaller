@@ -34,14 +34,14 @@ You can now use AAMI and you will never have to mess with your Among Us folder a
  - 1-Click-Installation, 1-Click-Deinstallation and 1-Click-Play for all available mods.
  - 1-Click-Update of installed mods. _Mod-specific settings/configurations are saved between mod-updates._
  - 1-Click-Play for Vanilla Among Us (Among Us without any mods).
- - [Adding support for new mods](#why-is-mod-xyz-not-available) can be done by anyone on GitHub, without the need of updating the AAMI clients.
- - For some new mods and changes to the AAMI client, a new version of AAMI must be installed. You will be informed about this after starting the client and have the option to automatically open the GitHub-website to download the new client. Read the section about [Updates](#updates-aami-among-us-mods) to learn more about AAMI's update behavior.
+ - 1-Click-Update for AAMI itself. _All mod installations are saved._ You will be informed about these updates when starting AAMI. Read the section about [Updates](#updates-aami-among-us-mods) to learn more about AAMI's (and ideally also your) update behavior.
+ - [Adding support for new mods](#why-is-mod-xyz-not-available) can be done by anyone on GitHub.
 
 ## Download / Where to get it?
 
 Download the latest release here: https://github.com/NyphoX/AutomatedAmongUsModInstaller/releases/latest
 
-If you are updating from an older version of AAMI, your old mods will be automatically uninstalled. This saves you time and disk space and prevents things from breaking, when new AAMI functions/mods are added. Afterwards, you will have to reconfigure your mods ingame. (I try to avoid this scenario as much as possible.)
+If you already have AAMI installed, launch it and update if it asks you to.
 
 ## Supported Mods
 
@@ -60,7 +60,7 @@ The only type of update you will never be notified about by AAMI are updates fro
 
 Refer to the following decision tree to see what to do on updates:
 
-<p align="center"><img src="https://user-images.githubusercontent.com/17164873/116947770-e2269180-ac7d-11eb-8032-78a45b2ef795.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/17164873/118295596-57932d00-b4dc-11eb-9200-f4bc764c37ef.png"></p>
 
 ## Windows protected your PC / Microsoft Defender SmartScreen
 
