@@ -41,7 +41,7 @@ You can now use AAMI and you will never have to mess with your Among Us folder a
 
 Download the latest release here: https://github.com/NyphoX/AutomatedAmongUsModInstaller/releases/latest
 
-If you are updating from an older version of AAMI, your old mods will be automatically uninstalled. This saves you time and disk space and prevents things from breaking, when new AAMI functions/mods are added. Afterwards, you will have to reconfigure your mods ingame.
+If you are updating from an older version of AAMI, your old mods will be automatically uninstalled. This saves you time and disk space and prevents things from breaking, when new AAMI functions/mods are added. Afterwards, you will have to reconfigure your mods ingame. (I try to avoid this scenario as much as possible.)
 
 ## Supported Mods
 
