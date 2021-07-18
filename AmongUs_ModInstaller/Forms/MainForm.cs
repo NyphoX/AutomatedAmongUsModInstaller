@@ -142,6 +142,9 @@ namespace AmongUs_ModInstaller
 
         private void btnPlayVanilla_Click(object sender, EventArgs e)
         {
+            if (!Manager.CheckSteamStateBlocking(this, settings))
+                return;
+
             Process.Start(Path.Combine(settings.AmongUsGameFullPath, settings.AmongUsGameExeName));
         }
     }

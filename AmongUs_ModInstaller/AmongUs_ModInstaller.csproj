@@ -14,12 +14,12 @@
     <Description>Installs mods for the Steam version of the game Among Us on Windows. Uses a masterlist from GitHub where releases of supported mods and their release-JSON are listed.</Description>
     <Copyright />
     <PackageProjectUrl>https://github.com/NyphoX/AutomatedAmongUsModInstaller</PackageProjectUrl>
-    <RepositoryUrl></RepositoryUrl>
+    <RepositoryUrl>https://github.com/NyphoX/AutomatedAmongUsModInstaller</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>2.3.0.0</AssemblyVersion>
-    <FileVersion>2.3.0.0</FileVersion>
-    <Version>2.3.0</Version>
+    <AssemblyVersion>2.3.1.0</AssemblyVersion>
+    <FileVersion>2.3.1.0</FileVersion>
+    <Version>2.3.1</Version>
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>AAMI_keyfile.pfx</AssemblyOriginatorKeyFile>

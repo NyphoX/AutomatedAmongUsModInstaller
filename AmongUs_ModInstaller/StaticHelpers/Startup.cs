@@ -62,8 +62,8 @@ namespace AmongUs_ModInstaller
                 return;
 
             //Get Steam installation folder from registry depending on OS architecture
-            string registryPath = (defaultSettings.IsCPUArchitecture64Bit ? defaultSettings.SteamRegistryPath64Bit : defaultSettings.SteamRegistryPath32Bit);
-            object registryValue = Microsoft.Win32.Registry.GetValue(registryPath, defaultSettings.SteamRegistryKeyName, null);
+            string registryPath = (defaultSettings.IsCPUArchitecture64Bit ? defaultSettings.SteamRegistryPathLocalMachine64Bit : defaultSettings.SteamRegistryPathLocalMachine32Bit);
+            object registryValue = Microsoft.Win32.Registry.GetValue(registryPath, defaultSettings.SteamRegistryKeyNameInstallPath, null);
 
             if (registryValue == null)
                 return;
@@ -159,7 +159,7 @@ namespace AmongUs_ModInstaller
                         return true;
 
                     //Show info window that we are doing something in the background...
-                    DialogForm df = new DialogForm("Updating AAMI...", "Downloading and installing new version of AAMI...\n ");//This needs a linebreak+space at the end, so autosize works correctly.
+                    DialogForm df = new DialogForm("Updating AAMI...", "Downloading and installing new version of AAMI...", false);
                     df.Show(mainForm);
 
                     //Download new version
@@ -230,6 +230,19 @@ namespace AmongUs_ModInstaller
                 modInfos.Remove(modInfo);
         }
 
+        private static bool SteamRegistryForLaunchCheckExists()
+        {
+            //Check Steam's "ActiveProcess"-key which seems independent from OS architecture
+            object pid = Microsoft.Win32.Registry.GetValue(defaultSettings.SteamRegistryPathCurrentUserActiveProcess, defaultSettings.SteamRegistryKeyNamePID, null);
+            object activeUser= Microsoft.Win32.Registry.GetValue(defaultSettings.SteamRegistryPathCurrentUserActiveProcess, defaultSettings.SteamRegistryKeyNamePID, null);
+            object steamExe = Microsoft.Win32.Registry.GetValue(defaultSettings.SteamRegistryPathCurrentUser, defaultSettings.SteamRegistryKeyNameSteamExe, null);
+
+            if (pid == null || activeUser == null || steamExe == null)
+                return false;
+
+            return true;
+        }
+
         public static void LoadSettings(MainForm mainForm)
         {
             //First check if this is an upgrade from old AAMI, then we can go on and actually check the settings.
@@ -243,8 +256,8 @@ namespace AmongUs_ModInstaller
             GetOSArchitecture();
             GetSteamSetupFromRegistry();
 
-            if (!defaultSettings.IsGamePathSet)
-                Application.Exit();
+            if (!defaultSettings.IsGamePathSet || !SteamRegistryForLaunchCheckExists())
+                throw new Exception("Problems detected with registry or with AAMI settings.");
 
             PrepareModdingDirectory();
             LoadModInstallations();

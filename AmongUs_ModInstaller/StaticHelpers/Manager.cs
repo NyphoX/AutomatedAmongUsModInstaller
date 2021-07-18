@@ -9,6 +9,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace AmongUs_ModInstaller
 {
@@ -26,7 +27,7 @@ namespace AmongUs_ModInstaller
             if (isOffline)
                 return null;
 
-            DialogForm df = new DialogForm("Installing...", "Downloading and installing mod...\n ");//This needs a linebreak+space at the end, so autosize works correctly.
+            DialogForm df = new DialogForm("Installing...", "Downloading and installing mod...", false);
             df.Show(mainForm);
 
             //Download GitHub release file to get tag (version that is not "latest") that is saved for this installation (update-functionality)
@@ -157,6 +158,9 @@ namespace AmongUs_ModInstaller
 
         public static void LaunchGame(Properties.Settings settings, ModInstallation modInstallation, MainForm mainForm, List<ModInstallation> modInstallations, List<ModInfo> modInfos)
         {
+            if (!CheckSteamStateBlocking(mainForm, settings))
+                return;
+
             if (!isOffline)
             {
                 modInstallation = CheckModInstallationForUpdate(settings, modInstallation, mainForm, modInstallations, modInfos);
@@ -168,12 +172,18 @@ namespace AmongUs_ModInstaller
 
             DialogForm df = new DialogForm("Starting game...", "The modded game has been started, please be patient.\n\n" + 
                 "This may take anywhere from a few seconds up to a \nfew minutes, depending on the installed mod and \nyour hardware.\n\n" + 
-                "This window will close itself after 10 seconds.\n ");//This needs a linebreak+space at the end, so autosize works correctly.
+                "This window will close itself after 10 seconds.", true);
 
             df.Show(mainForm);
-            df.Update();//Windows should display the text in the new form. BEFORE putting everything to sleep...
-            System.Threading.Thread.Sleep(10000);
-            df.Close();
+
+            //Keep info window open for 10 seconds, but continue working
+            System.Timers.Timer t = new System.Timers.Timer();
+            t.Interval = 10 * 1000;
+            t.Elapsed += (sender, e) => {
+                df.Close();
+                t.Enabled = false;
+            };
+            t.Start();
         }
 
         private static ModInstallation CheckModInstallationForUpdate(Properties.Settings settings, ModInstallation modInstallation, MainForm mainForm, List<ModInstallation> modInstallations, List<ModInfo> modInfos)
@@ -254,6 +264,43 @@ namespace AmongUs_ModInstaller
                 File.Copy(tempFile, combinedPath, true);
                 File.Delete(tempFile);
             }
+        }
+
+        public static bool CheckSteamStateBlocking(MainForm mainForm, Properties.Settings settings)
+        {
+            //Get values
+            bool steamRunning, steamLoggedIn;
+            string steamExe;
+            GetSteamRegistryKeyValues(settings, out steamRunning, out steamLoggedIn, out steamExe);
+
+            //If user is already logged in to Steam, no need for further logic
+            if (steamRunning && steamLoggedIn)
+                return true;
+
+            //Otherwise inform user about Steam requirement
+            DialogResult doStartSteam = MessageBox.Show("You need to be logged in to Steam for Among Us to work. You should also make sure that " +
+                "all updates for Among Us are installed and your mods are updated afterwards (if possible). After logging in, click \"Play\" again.\n\n" +
+                "Do you want to start Steam now?", "Steam Login is required to run the game", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+
+            //Start Steam, if user wants to
+            if (doStartSteam == DialogResult.Yes)
+                Process.Start(steamExe);
+
+            return false;
+        }
+
+        private static void GetSteamRegistryKeyValues(Properties.Settings settings, out bool steamRunning, out bool steamLoggedIn, out string steamExe)
+        {
+            object objPID = Microsoft.Win32.Registry.GetValue(settings.SteamRegistryPathCurrentUserActiveProcess, settings.SteamRegistryKeyNamePID, null);
+            object objActiveUser = Microsoft.Win32.Registry.GetValue(settings.SteamRegistryPathCurrentUserActiveProcess, settings.SteamRegistryKeyNameActiveUser, null);
+            object objSteamExe = Microsoft.Win32.Registry.GetValue(settings.SteamRegistryPathCurrentUser, settings.SteamRegistryKeyNameSteamExe, null);
+
+            if (objPID == null || objActiveUser == null || objSteamExe == null)
+                throw new Exception("Steam registry keys were deleted while AAMI was running.");
+
+            steamRunning = (0 != Convert.ToInt32(objPID));
+            steamLoggedIn = (0 != Convert.ToInt32(objActiveUser));
+            steamExe = Convert.ToString(objSteamExe);
         }
     }
 }

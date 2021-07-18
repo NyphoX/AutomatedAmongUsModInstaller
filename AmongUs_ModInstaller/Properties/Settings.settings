@@ -11,13 +11,13 @@
     <Setting Name="IsCPUArchitecture64Bit" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SteamRegistryPath32Bit" Type="System.String" Scope="User">
+    <Setting Name="SteamRegistryPathLocalMachine32Bit" Type="System.String" Scope="User">
       <Value Profile="(Default)">HKEY_LOCAL_MACHINE\SOFTWARE\Valve\Steam</Value>
     </Setting>
-    <Setting Name="SteamRegistryPath64Bit" Type="System.String" Scope="User">
+    <Setting Name="SteamRegistryPathLocalMachine64Bit" Type="System.String" Scope="User">
       <Value Profile="(Default)">HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Valve\Steam</Value>
     </Setting>
-    <Setting Name="SteamRegistryKeyName" Type="System.String" Scope="User">
+    <Setting Name="SteamRegistryKeyNameInstallPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">InstallPath</Value>
     </Setting>
     <Setting Name="AmongUsAppManifestSublocation" Type="System.String" Scope="User">
@@ -61,6 +61,21 @@
     </Setting>
     <Setting Name="AAMISettingsUpgradeRequired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SteamRegistryPathCurrentUserActiveProcess" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HKEY_CURRENT_USER\SOFTWARE\Valve\Steam\ActiveProcess</Value>
+    </Setting>
+    <Setting Name="SteamRegistryKeyNamePID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pid</Value>
+    </Setting>
+    <Setting Name="SteamRegistryKeyNameActiveUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ActiveUser</Value>
+    </Setting>
+    <Setting Name="SteamRegistryKeyNameSteamExe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SteamExe</Value>
+    </Setting>
+    <Setting Name="SteamRegistryPathCurrentUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HKEY_CURRENT_USER\SOFTWARE\Valve\Steam</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -62,36 +62,36 @@ namespace AmongUs_ModInstaller.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("HKEY_LOCAL_MACHINE\\SOFTWARE\\Valve\\Steam")]
-        public string SteamRegistryPath32Bit {
+        public string SteamRegistryPathLocalMachine32Bit {
             get {
-                return ((string)(this["SteamRegistryPath32Bit"]));
+                return ((string)(this["SteamRegistryPathLocalMachine32Bit"]));
             }
             set {
-                this["SteamRegistryPath32Bit"] = value;
+                this["SteamRegistryPathLocalMachine32Bit"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Valve\\Steam")]
-        public string SteamRegistryPath64Bit {
+        public string SteamRegistryPathLocalMachine64Bit {
             get {
-                return ((string)(this["SteamRegistryPath64Bit"]));
+                return ((string)(this["SteamRegistryPathLocalMachine64Bit"]));
             }
             set {
-                this["SteamRegistryPath64Bit"] = value;
+                this["SteamRegistryPathLocalMachine64Bit"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("InstallPath")]
-        public string SteamRegistryKeyName {
+        public string SteamRegistryKeyNameInstallPath {
             get {
-                return ((string)(this["SteamRegistryKeyName"]));
+                return ((string)(this["SteamRegistryKeyNameInstallPath"]));
             }
             set {
-                this["SteamRegistryKeyName"] = value;
+                this["SteamRegistryKeyNameInstallPath"] = value;
             }
         }
         
@@ -261,6 +261,66 @@ namespace AmongUs_ModInstaller.Properties {
             }
             set {
                 this["AAMISettingsUpgradeRequired"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("HKEY_CURRENT_USER\\SOFTWARE\\Valve\\Steam\\ActiveProcess")]
+        public string SteamRegistryPathCurrentUserActiveProcess {
+            get {
+                return ((string)(this["SteamRegistryPathCurrentUserActiveProcess"]));
+            }
+            set {
+                this["SteamRegistryPathCurrentUserActiveProcess"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pid")]
+        public string SteamRegistryKeyNamePID {
+            get {
+                return ((string)(this["SteamRegistryKeyNamePID"]));
+            }
+            set {
+                this["SteamRegistryKeyNamePID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ActiveUser")]
+        public string SteamRegistryKeyNameActiveUser {
+            get {
+                return ((string)(this["SteamRegistryKeyNameActiveUser"]));
+            }
+            set {
+                this["SteamRegistryKeyNameActiveUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SteamExe")]
+        public string SteamRegistryKeyNameSteamExe {
+            get {
+                return ((string)(this["SteamRegistryKeyNameSteamExe"]));
+            }
+            set {
+                this["SteamRegistryKeyNameSteamExe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("HKEY_CURRENT_USER\\SOFTWARE\\Valve\\Steam")]
+        public string SteamRegistryPathCurrentUser {
+            get {
+                return ((string)(this["SteamRegistryPathCurrentUser"]));
+            }
+            set {
+                this["SteamRegistryPathCurrentUser"] = value;
             }
         }
     }
